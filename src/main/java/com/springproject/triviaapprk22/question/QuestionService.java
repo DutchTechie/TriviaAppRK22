@@ -13,4 +13,8 @@ public class QuestionService {
         List<Question> listOfQuestions = questionRepository.fetch(amount);
         return questionRepository.fetch(amount);
     }
+
+    public boolean checkAnswer(String correctAnswer, String submittedAnswer) {
+        return true;
+    }
 }

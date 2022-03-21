@@ -3,6 +3,7 @@ package com.springproject.triviaapprk22.question;
 import org.jboss.jandex.Index;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -62,9 +63,18 @@ class QuestionServiceTest {
         }).isInstanceOf(IndexOutOfBoundsException.class);
     }
 
+    @Test
+    public void canCheckIfAnswerIsCorrect() {
+        // arrange
+        String correctAnswer = "answer 1";
+        String submittedAnswer = "answer 1";
 
-    // TODO: Make the test fail first
-    // TODO: Test the correct answer is found in the list of possible answers
+        // act
+        boolean isAnswerCorrect = questionServiceUnderTest.checkAnswer(correctAnswer, submittedAnswer);
+
+        // assert
+        assert isAnswerCorrect;
+    }
 
     // TODO: Make the test fail first
     // TODO: Test the incorrect answer is selected
