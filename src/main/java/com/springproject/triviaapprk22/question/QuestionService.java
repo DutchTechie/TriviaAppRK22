@@ -9,12 +9,11 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
 
     public List<Question> requestQuestions(int amount) {
-        // TODO: Load questions from an API
         List<Question> listOfQuestions = questionRepository.fetch(amount);
-        return questionRepository.fetch(amount);
+        return listOfQuestions;
     }
 
     public boolean checkAnswer(String correctAnswer, String submittedAnswer) {
-        return true;
+        return new String(correctAnswer).equals(submittedAnswer);
     }
 }

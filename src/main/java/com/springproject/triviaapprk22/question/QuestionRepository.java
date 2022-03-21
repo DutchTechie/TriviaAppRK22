@@ -10,6 +10,7 @@ public class QuestionRepository {
         this.questions = new ArrayList<Question>();
     }
 
+    // TODO: Load questions from an API
     public List<Question> fetch(int amount) {
         return this.questions;
     }

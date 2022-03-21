@@ -1,8 +1,6 @@
 package com.springproject.triviaapprk22.question;
 
-import org.jboss.jandex.Index;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -10,14 +8,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.ws.rs.BadRequestException;
-import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
@@ -68,20 +62,20 @@ class QuestionServiceTest {
         // arrange
         String correctAnswer = "answer 1";
         String submittedAnswer = "answer 1";
-
         // act
         boolean isAnswerCorrect = questionServiceUnderTest.checkAnswer(correctAnswer, submittedAnswer);
-
         // assert
-        assert isAnswerCorrect;
+        assertThat(isAnswerCorrect).isTrue();
     }
 
-    // TODO: Make the test fail first
-    // TODO: Test the incorrect answer is selected
-
-    // TODO: Make the test fail first
-    // TODO: Test the correct answer is selected
-
-    // TODO: Make the test fail first
-    // TODO: Test the correct answer belongs to the correct question
+    @Test
+    public void canCheckIfAnswerIsIncorrect() {
+        // arrange
+        String correctAnswer = "answer 1";
+        String submittedAnswer = "answer 2";
+        // act
+        boolean isAnswerCorrect = questionServiceUnderTest.checkAnswer(correctAnswer, submittedAnswer);
+        // assert
+        assertThat(isAnswerCorrect).isFalse();
+    }
 }
