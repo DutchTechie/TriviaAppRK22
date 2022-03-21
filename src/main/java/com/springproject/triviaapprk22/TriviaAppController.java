@@ -5,13 +5,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TriviaAppController {
-    @RequestMapping
-    public String helloWorld() {
-        return "Hello World from Spring Boot";
+    // TODO: Add QuestionService instance here
+
+    @RequestMapping("/questions")
+    public String loadQuestions() {
+        return "Questions";
     }
 
-    @RequestMapping("/goodbye")
-    public String goodbye() {
+    @RequestMapping("/checkanswer")
+    public String checkAnswer() {
         return "Goodbye from Spring Boot";
     }
 }
