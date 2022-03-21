@@ -8,11 +8,13 @@ public class QuestionRepository {
 
     QuestionRepository() {
         this.questions = new ArrayList<Question>();
-        this.questions.add(new Question("question 1"));
-        this.questions.add(new Question("question 2"));
     }
 
     public List<Question> fetch(int amount) {
         return this.questions;
+    }
+
+    public void addQuestion(String question) {
+        this.questions.add(new Question(question));
     }
 }

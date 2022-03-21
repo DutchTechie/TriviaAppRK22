@@ -8,9 +8,9 @@ import java.util.List;
 public class QuestionService {
     private final QuestionRepository questionRepository;
 
-    // May need to update the method return type
     public List<Question> requestQuestions(int amount) {
         // TODO: Load questions from an API
+        List<Question> listOfQuestions = questionRepository.fetch(amount);
         return questionRepository.fetch(amount);
     }
 }
