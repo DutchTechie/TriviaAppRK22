@@ -1,4 +1,4 @@
-package com.springproject.triviaapprk22.question;
+package com.springproject.triviaapprk22.triviadata;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,13 +15,14 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
-class QuestionServiceTest {
-    @Mock QuestionRepository questionRepository;
-    private QuestionService questionServiceUnderTest;
+class TriviaDataTriviaServiceTest {
+    @Mock
+    TriviaDataOldRepository triviaDataOldRepository;
+    private TriviaDataService questionServiceUnderTest;
 
     @BeforeEach
     void setUp() {
-        questionServiceUnderTest = new QuestionService(questionRepository);
+        questionServiceUnderTest = new TriviaDataService(triviaDataOldRepository);
     }
 
     @ParameterizedTest
@@ -31,18 +32,7 @@ class QuestionServiceTest {
         // act
         questionServiceUnderTest.requestQuestions(amount);
         // assert
-        verify(questionRepository).fetch(amount);
-    }
-
-    // TODO: Test number of multiple-choice questions results in 5.
-    @ParameterizedTest
-    @ValueSource(ints = {5})
-    public void canFetchFiveQuestions(int amount) {
-        // arrange
-        // act
-        List<Question> listOfQuestions = questionServiceUnderTest.requestQuestions(amount);
-        // assert
-        assertThat(listOfQuestions.size()).isEqualTo(amount);
+        verify(triviaDataOldRepository).fetch(amount);
     }
 
     @ParameterizedTest
@@ -52,8 +42,8 @@ class QuestionServiceTest {
         // act
         // assert
         assertThatThrownBy(() -> {
-            List<Question> listOfQuestions = questionServiceUnderTest.requestQuestions(amount);
-            Question question = listOfQuestions.get(0);
+            List<String> listOfQuestions = questionServiceUnderTest.requestQuestions(amount);
+            String question = listOfQuestions.get(0);
         }).isInstanceOf(IndexOutOfBoundsException.class);
     }
 

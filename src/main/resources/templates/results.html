@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+    <ul>
+        <li th:each="result : ${results}">
+            <p th:text="${result.question}">Question</p>
+            <p th:text="${result.submittedAnswer}">Results!</p>
+            <p th:text="${result.correctAnswer}">Results!</p>
+            <p th:text="${result.message}">Message</p>
+        </li>
+    </ul>
+</body>
+</html>
