@@ -2,10 +2,6 @@ package com.springproject.triviaapprk22.dto;
 
 import com.springproject.triviaapprk22.model.triviadata.MultipleChoiceQuestion;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class MultipleChoiceCreationDto {
     private MultipleChoiceQuestion[] questions;
     private int questionsIndex;
@@ -40,9 +36,9 @@ public class MultipleChoiceCreationDto {
 
     @Override
     public String toString() {
-        String str = "";
-        for (int i = 0 ; i < questions.length ; i++) {
-            str+=(questions[i].toString());
+        StringBuilder str = new StringBuilder();
+        for (MultipleChoiceQuestion question : questions) {
+            str.append(question.toString());
         }
         return "MultipleChoiceCreationDto{" + str + '}';
     }

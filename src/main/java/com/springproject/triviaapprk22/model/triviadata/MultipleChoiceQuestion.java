@@ -10,7 +10,6 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MultipleChoiceQuestion {
-    private long id;
     private String category;
     private String type;
     private String difficulty;
@@ -66,14 +65,6 @@ public class MultipleChoiceQuestion {
         return possibleAnswers.toArray(possibleAnswersArray);
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getQuestion() {
         return question;
     }
@@ -101,7 +92,6 @@ public class MultipleChoiceQuestion {
     @Override
     public String toString() {
         return "MultipleChoiceQuestion{" +
-                "id=" + id +
                 ", category='" + category + '\'' +
                 ", type='" + type + '\'' +
                 ", difficulty='" + difficulty + '\'' +

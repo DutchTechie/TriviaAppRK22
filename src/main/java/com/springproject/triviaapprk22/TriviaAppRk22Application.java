@@ -9,13 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
 
-// FINALIZING
-// TODO: Refactor code
-// TODO: Add bootstrap
-// TODO: Add a back button
-// TODO: Delete triviadata
-// TODO: Push to git
-// TODO: Create the Readme file
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class TriviaAppRk22Application {
     public static void main(String[] args) throws IOException {

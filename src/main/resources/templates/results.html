@@ -3,16 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Results</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        ul {
+            list-style-type: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>Results</h1>
-    <ul>
-        <li th:each="result : ${results}">
-            <p th:text="${result.question}">Question</p>
-            <p th:text="${result.submittedAnswer}">Results!</p>
-            <p th:text="${result.correctAnswer}">Results!</p>
-            <p th:text="${result.message}">Message</p>
-        </li>
-    </ul>
+    <div th:class="container">
+        <h1>Results</h1>
+        <ul>
+            <li th:each="result : ${results}">
+                <p th:text="${result.question}">Question</p>
+                <p th:text="${result.submittedAnswer}">Results!</p>
+                <p th:text="${result.correctAnswer}">Results!</p>
+                <div th:class="${result.submittedAnswer == result.correctAnswer} ? 'alert alert-success' : 'alert alert-danger'" role="alert">
+                    <p th:text="${result.message}" th:class="${result.submittedAnswer == result.correctAnswer} ? 'text-success' : 'text-danger'">Message</p>
+                </div>
+            </li>
+        </ul>
+        <a class="btn btn-info" href="#" th:href="@{/questions}"> Back </a>
+    </div>
 </body>
 </html>

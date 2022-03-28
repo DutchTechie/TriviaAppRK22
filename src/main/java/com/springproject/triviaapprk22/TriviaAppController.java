@@ -1,11 +1,9 @@
 package com.springproject.triviaapprk22;
 
 import com.springproject.triviaapprk22.dto.MultipleChoiceCreationDto;
-import com.springproject.triviaapprk22.model.triviadata.MultipleChoiceQuestion;
 import com.springproject.triviaapprk22.model.Result;
+import com.springproject.triviaapprk22.model.triviadata.MultipleChoiceQuestion;
 import com.springproject.triviaapprk22.model.triviadata.TriviaData;
-import com.springproject.triviaapprk22.repository.TriviaRepository;
-import com.springproject.triviaapprk22.service.InMemoryTriviaService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,44 +15,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-// this.service = new InMemoryTriviaService(repository);
-// multipleChoiceQuestions = service.findAll(5);
-
 @Controller
 public class TriviaAppController {
-    // private static List<MultipleChoiceQuestion> multipleChoiceQuestions;
-    private static TriviaRepository repository;
-    private InMemoryTriviaService service;
-    private RestTemplate restTemplate;
     private static final String QUESTIONS_URI = "https://opentdb.com/api.php";
-    private TriviaData triviaData;
+    private static final int NUMBER_OF_QUESTIONS = 5;
     private MultipleChoiceQuestion[] questions;
+    private RestTemplate restTemplate;
+    private TriviaData triviaData;
 
     public TriviaAppController() {
-        this.repository = new TriviaRepository();
         restTemplate = new RestTemplate();
-        String uri = constructFullPathToApi(QUESTIONS_URI, "amount", String.valueOf(2));
+        String uri = constructFullPathToApi(QUESTIONS_URI, "amount", String.valueOf(NUMBER_OF_QUESTIONS));
         triviaData = restTemplate.getForObject(uri, TriviaData.class);
         questions = triviaData.getMultipleChoiceQuestions();
     }
 
     private String constructFullPathToApi(String uri, String parameterName, String value) {
         String requestParameter = String.format("?%s=%s", parameterName, value);
-        String completeUri = uri.concat(requestParameter);
-        return completeUri;
+        return uri.concat(requestParameter);
     }
 
     @GetMapping(value = "/questions")
     public String showTriviaApp(Model model) {
         MultipleChoiceCreationDto listOfQuestions = new MultipleChoiceCreationDto(questions);
         model.addAttribute("form", listOfQuestions);
-        System.out.println(listOfQuestions);
-        return "main";
+        return "questions";
     }
 
     @PostMapping(value = "/checkanswer")
     public String checkAnswer(@ModelAttribute("form") MultipleChoiceCreationDto form, Model model) {
-        System.out.println(form.toString());
         List<Result> results = new ArrayList<>();
         IntStream
                 .range(0, questions.length)
